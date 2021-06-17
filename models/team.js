@@ -1,5 +1,6 @@
-import mongoose from 'mongoose';
+const mongoose = require ('mongoose');
 
+//basic schema for the team, as it will reflect on MongoDB atlas
 const teamSchema = new mongoose.Schema(
   {
     name: { type: String, required: true, unique: true },
@@ -25,5 +26,5 @@ const teamSchema = new mongoose.Schema(
   },
 
 );
-const Team = mongoose.model('Team', teamSchema);
-export default team;
+
+module.exports = mongoose.model('Team', teamSchema);
