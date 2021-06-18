@@ -12,7 +12,7 @@ exports.create = (req, res) => {
 
     // Register a player
     const player = new Player({
-        name: req.body.title, 
+        name: req.body.name, 
         age: req.body.age,
         dob: req.body.dob,
         jerseyNo: req.body.jerseyNo,

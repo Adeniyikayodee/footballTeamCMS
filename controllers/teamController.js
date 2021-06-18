@@ -12,7 +12,7 @@ exports.create = (req, res) => {
 
     // Register a team  // the details
     const team = new team({
-        name: req.body.title, 
+        name: req.body.name, 
         manager: req.body.manager,
         teamAlias: req.body.teamAlias,
         foundedData: req.body.foundedData,

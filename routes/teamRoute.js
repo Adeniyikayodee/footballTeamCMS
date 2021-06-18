@@ -1,6 +1,7 @@
+//importing modules here
 const express = require('express');
 const router = express.Router();
-const teamController = require('../controllers/teamController.js');
+const Team = require('../controllers/teamController.js');
 
 
 router.all('/*', (req, res, next) => {
@@ -12,12 +13,12 @@ router.all('/*', (req, res, next) => {
 
 
 router.route('/teams')
-    .post(teamController.create);
+    .post(Team.create); // create a team
     
 router.route('/teams')
-    .get(teamController.findAll);
+    .get(Team.findAll); // retrive all team
 
 router.route('/teams/teamId')
-    .get(teamController.findOne);
+    .get(Team.findOne);  // get a team by ID
 
 module.exports = router;

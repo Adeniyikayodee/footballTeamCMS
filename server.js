@@ -29,7 +29,7 @@ app.use(bodyParser.json())
 // Adds all routes to middleware 
 app.use('/teamRoute', teamRouter);
 app.use('/playerRoute', playerRouter);
-//app.use('/matchRoute', matchRouter);
+app.use('/matchRoute', matchRouter);
 
 
 // Connecting to the database

@@ -1,7 +1,7 @@
 //Importing modules here
 const mongoose = require('mongoose');
 
-const PlayerSchema = mongoose.Schema({
+const PlayerSchema = new mongoose.Schema({
     name: { type: String, required: true, unique: true },
     age: { type: Number, required: true },
     dob: { type: Date, required: true },
