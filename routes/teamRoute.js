@@ -1,13 +1,23 @@
-module.exports = (app) => {
-    const team = require('../controllers/teamController.js');
+const express = require('express');
+const router = express.Router();
+const teamController = require('../controllers/teamController.js');
 
-    // Register a new Team
-    app.post('/teams', team.create);
 
-    // Retrieve all Team
-    app.get('/teams', team.findAll);
+router.all('/*', (req, res, next) => {
 
-    // Retrieve a Team with Id
-    app.get('/teams/:teamId', team.findOne);
+    req.app.locals.layout = 'team';
 
-};
+    next();
+})
+
+
+router.route('/teams')
+    .post(teamController.create);
+    
+router.route('/teams')
+    .get(teamController.findAll);
+
+router.route('/teams/teamId')
+    .get(teamController.findOne);
+
+module.exports = router;

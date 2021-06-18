@@ -1,3 +1,4 @@
+//Importing modules here
 const mongoose = require ('mongoose');
 
 //basic schema for the team, as it will reflect on MongoDB atlas

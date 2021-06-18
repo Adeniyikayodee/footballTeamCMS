@@ -1,4 +1,5 @@
-const = require('../models/team.js');
+//Importing modules here
+const Team = require('../models/team.js');
 
 // register a team
 exports.create = (req, res) => {

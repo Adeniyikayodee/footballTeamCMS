@@ -1,15 +1,26 @@
-module.exports = (app) => {
-    const player = require('../controllers/playerController.js');
+const express = require('express');
+const router = express.Router();
+const playerController = require('../controllers/playerController.js');
 
-    // Register a new Player
-    app.post('/players', players.create);
 
-    // Retrieve all Players
-    app.get('/players', players.findAll);
+router.all('/*', (req, res, next) => {
 
-    // Retrieve a Player with Id
-    app.get('/players/:playerId', players.findOne);
+    req.app.locals.layout = 'player';
 
-    // De-register a player with Id
-    app.delete('/players/:playerId', players.delete);
-};
+    next();
+})
+
+
+router.route('/players')
+    .post(playerController.create); // Register a new Player
+    
+router.route('/players')
+    .get(playerController.findAll); // Retrieve a Player with Id
+
+router.route('/players/playerId')
+    .get(playerController.findOne); // Retrieve a Player with Id
+
+router.route('/players/playerId')
+    .delete(playerController.delete); // De-register a player with Id
+
+module.exports = router;

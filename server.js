@@ -1,3 +1,4 @@
+//Importing modules here
 const express = require('express'); // this helps create server
 const bodyParser= require('body-parser'); // this enables http requests
 const mongoose = require('mongoose'); // this helps woth db schema
@@ -5,15 +6,19 @@ require('dotenv').config(); // this enables me call environment varibales
 
 mongoose.Promise = global.Promise;
 
-// importing routes
-const indexRoutes = require('./routes/routes');
+// importing all the routes
+const teamRouter = require('./routes/teamRoute');
+const matchRouter = require('./routes/matchRoute');
+const playerRouter = require('./routes/playerRoute');
+
 
 const app = express();
-const port = 3000; //setting dafault port here
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-// connects to the database and attach a db object to the request object
-app.use(expressMongoDB(process.env.DB_URL));
 
+//default port
+const port = 3000;
 
 // this will parse requests of content-type
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -21,14 +26,17 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // this will parse requests of content-type - application/json
 app.use(bodyParser.json())
 
-
-// APP.USE HERE 
+// Adds all routes to middleware 
+app.use('/teamRoute', teamRouter);
+app.use('/playerRoute', playerRouter);
+//app.use('/matchRoute', matchRouter);
 
 
 // Connecting to the database
-mongoose.connect(DB_URL, {
+mongoose.connect(process.env.DB_URL, {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useCreateIndex: true,
 }).then(() => {
     console.log("Successfully connected to the database");    
 }).catch(err => {
